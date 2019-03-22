@@ -1,0 +1,8 @@
+prefix=/home/georgemencoff/catkin_ws/install
+
+Name: handheld_device
+Description: Description of handheld_device
+Version: 0.0.0
+Cflags: -I/home/georgemencoff/catkin_ws/install/include
+Libs: -L/home/georgemencoff/catkin_ws/install/lib 
+Requires: 

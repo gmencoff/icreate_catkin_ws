@@ -1,0 +1,4 @@
+int64 device_distance
+geometry_msgs/Quaternion device_quat
+geometry_msgs/Accel device_accel
+int64 device_switch

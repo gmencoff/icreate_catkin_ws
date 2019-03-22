@@ -1,0 +1,14 @@
+<launch>
+  <group ns="create5">
+        <include file="$(find ca_driver)/launch/create_2_lite.launch">
+        </include>
+        <node name="waypoint_listen5" pkg="bu_create" type="test.py" respawn="true" />
+	<!--
+	<node name="sensors" pkg="lightsensing" type="lightsensing.py" respawn="true" /> 
+	-->
+</group>
+
+</launch>
+
+
+

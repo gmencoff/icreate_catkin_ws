@@ -1,0 +1,8 @@
+prefix=/home/georgemencoff/catkin_ws/devel
+
+Name: icreate_project
+Description: Description of icreate_project
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/georgemencoff/catkin_ws/devel/lib 
+Requires: roscpp rospy std_msgs message_runtime

@@ -1,0 +1,8 @@
+<launch>
+
+<group ns="create5">
+        <node name="camera" pkg="cv_camera" type="cv_camera_node" respawn="true" />
+</group>
+
+</launch>
+

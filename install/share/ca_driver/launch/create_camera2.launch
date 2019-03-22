@@ -1,0 +1,6 @@
+<launch>
+        <node name="camera" pkg="cv_camera" type="cv_camera_node" respawn="true" />
+	<remap from="camera/image_raw/compressed" to="image/compressed"/>
+	<remap from="camera/camera_info" to="camera_info"/>
+</launch>
+
