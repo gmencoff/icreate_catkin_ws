@@ -1,10 +1,20 @@
 (cl:in-package handheld_device-msg)
 (cl:export '(DEVICE_DISTANCE-VAL
           DEVICE_DISTANCE
-          DEVICE_QUAT-VAL
-          DEVICE_QUAT
-          DEVICE_ACCEL-VAL
-          DEVICE_ACCEL
+          QUATX-VAL
+          QUATX
+          QUATY-VAL
+          QUATY
+          QUATZ-VAL
+          QUATZ
+          QUATW-VAL
+          QUATW
+          ACCELX-VAL
+          ACCELX
+          ACCELY-VAL
+          ACCELY
+          ACCELZ-VAL
+          ACCELZ
           DEVICE_SWITCH-VAL
           DEVICE_SWITCH
 ))

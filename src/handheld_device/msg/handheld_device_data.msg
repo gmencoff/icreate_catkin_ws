@@ -1,4 +1,9 @@
-int64 device_distance
-geometry_msgs/Quaternion device_quat
-geometry_msgs/Accel device_accel
-int64 device_switch
+int16 device_distance
+float32 quatx
+float32 quaty
+float32 quatz
+float32 quatw
+float32 accelx
+float32 accely
+float32 accelz
+int8 device_switch

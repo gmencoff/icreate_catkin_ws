@@ -11,7 +11,6 @@ const _deserializer = _ros_msg_utils.Deserialize;
 const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
-let geometry_msgs = _finder('geometry_msgs');
 
 //-----------------------------------------------------------
 
@@ -20,8 +19,13 @@ class handheld_device_data {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.device_distance = null;
-      this.device_quat = null;
-      this.device_accel = null;
+      this.quatx = null;
+      this.quaty = null;
+      this.quatz = null;
+      this.quatw = null;
+      this.accelx = null;
+      this.accely = null;
+      this.accelz = null;
       this.device_switch = null;
     }
     else {
@@ -31,17 +35,47 @@ class handheld_device_data {
       else {
         this.device_distance = 0;
       }
-      if (initObj.hasOwnProperty('device_quat')) {
-        this.device_quat = initObj.device_quat
+      if (initObj.hasOwnProperty('quatx')) {
+        this.quatx = initObj.quatx
       }
       else {
-        this.device_quat = new geometry_msgs.msg.Quaternion();
+        this.quatx = 0.0;
       }
-      if (initObj.hasOwnProperty('device_accel')) {
-        this.device_accel = initObj.device_accel
+      if (initObj.hasOwnProperty('quaty')) {
+        this.quaty = initObj.quaty
       }
       else {
-        this.device_accel = new geometry_msgs.msg.Accel();
+        this.quaty = 0.0;
+      }
+      if (initObj.hasOwnProperty('quatz')) {
+        this.quatz = initObj.quatz
+      }
+      else {
+        this.quatz = 0.0;
+      }
+      if (initObj.hasOwnProperty('quatw')) {
+        this.quatw = initObj.quatw
+      }
+      else {
+        this.quatw = 0.0;
+      }
+      if (initObj.hasOwnProperty('accelx')) {
+        this.accelx = initObj.accelx
+      }
+      else {
+        this.accelx = 0.0;
+      }
+      if (initObj.hasOwnProperty('accely')) {
+        this.accely = initObj.accely
+      }
+      else {
+        this.accely = 0.0;
+      }
+      if (initObj.hasOwnProperty('accelz')) {
+        this.accelz = initObj.accelz
+      }
+      else {
+        this.accelz = 0.0;
       }
       if (initObj.hasOwnProperty('device_switch')) {
         this.device_switch = initObj.device_switch
@@ -55,13 +89,23 @@ class handheld_device_data {
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type handheld_device_data
     // Serialize message field [device_distance]
-    bufferOffset = _serializer.int64(obj.device_distance, buffer, bufferOffset);
-    // Serialize message field [device_quat]
-    bufferOffset = geometry_msgs.msg.Quaternion.serialize(obj.device_quat, buffer, bufferOffset);
-    // Serialize message field [device_accel]
-    bufferOffset = geometry_msgs.msg.Accel.serialize(obj.device_accel, buffer, bufferOffset);
+    bufferOffset = _serializer.int16(obj.device_distance, buffer, bufferOffset);
+    // Serialize message field [quatx]
+    bufferOffset = _serializer.float32(obj.quatx, buffer, bufferOffset);
+    // Serialize message field [quaty]
+    bufferOffset = _serializer.float32(obj.quaty, buffer, bufferOffset);
+    // Serialize message field [quatz]
+    bufferOffset = _serializer.float32(obj.quatz, buffer, bufferOffset);
+    // Serialize message field [quatw]
+    bufferOffset = _serializer.float32(obj.quatw, buffer, bufferOffset);
+    // Serialize message field [accelx]
+    bufferOffset = _serializer.float32(obj.accelx, buffer, bufferOffset);
+    // Serialize message field [accely]
+    bufferOffset = _serializer.float32(obj.accely, buffer, bufferOffset);
+    // Serialize message field [accelz]
+    bufferOffset = _serializer.float32(obj.accelz, buffer, bufferOffset);
     // Serialize message field [device_switch]
-    bufferOffset = _serializer.int64(obj.device_switch, buffer, bufferOffset);
+    bufferOffset = _serializer.int8(obj.device_switch, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -70,18 +114,28 @@ class handheld_device_data {
     let len;
     let data = new handheld_device_data(null);
     // Deserialize message field [device_distance]
-    data.device_distance = _deserializer.int64(buffer, bufferOffset);
-    // Deserialize message field [device_quat]
-    data.device_quat = geometry_msgs.msg.Quaternion.deserialize(buffer, bufferOffset);
-    // Deserialize message field [device_accel]
-    data.device_accel = geometry_msgs.msg.Accel.deserialize(buffer, bufferOffset);
+    data.device_distance = _deserializer.int16(buffer, bufferOffset);
+    // Deserialize message field [quatx]
+    data.quatx = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [quaty]
+    data.quaty = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [quatz]
+    data.quatz = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [quatw]
+    data.quatw = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [accelx]
+    data.accelx = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [accely]
+    data.accely = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [accelz]
+    data.accelz = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [device_switch]
-    data.device_switch = _deserializer.int64(buffer, bufferOffset);
+    data.device_switch = _deserializer.int8(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 96;
+    return 31;
   }
 
   static datatype() {
@@ -91,43 +145,21 @@ class handheld_device_data {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '894e9b259d1d4e8448e9e2d9ffed9851';
+    return '5f3fc4e797e13ce34dcd40452711b663';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int64 device_distance
-    geometry_msgs/Quaternion device_quat
-    geometry_msgs/Accel device_accel
-    int64 device_switch
-    ================================================================================
-    MSG: geometry_msgs/Quaternion
-    # This represents an orientation in free space in quaternion form.
-    
-    float64 x
-    float64 y
-    float64 z
-    float64 w
-    
-    ================================================================================
-    MSG: geometry_msgs/Accel
-    # This expresses acceleration in free space broken into its linear and angular parts.
-    Vector3  linear
-    Vector3  angular
-    
-    ================================================================================
-    MSG: geometry_msgs/Vector3
-    # This represents a vector in free space. 
-    # It is only meant to represent a direction. Therefore, it does not
-    # make sense to apply a translation to it (e.g., when applying a 
-    # generic rigid transformation to a Vector3, tf2 will only apply the
-    # rotation). If you want your data to be translatable too, use the
-    # geometry_msgs/Point message instead.
-    
-    float64 x
-    float64 y
-    float64 z
+    int16 device_distance
+    float32 quatx
+    float32 quaty
+    float32 quatz
+    float32 quatw
+    float32 accelx
+    float32 accely
+    float32 accelz
+    int8 device_switch
     `;
   }
 
@@ -144,18 +176,53 @@ class handheld_device_data {
       resolved.device_distance = 0
     }
 
-    if (msg.device_quat !== undefined) {
-      resolved.device_quat = geometry_msgs.msg.Quaternion.Resolve(msg.device_quat)
+    if (msg.quatx !== undefined) {
+      resolved.quatx = msg.quatx;
     }
     else {
-      resolved.device_quat = new geometry_msgs.msg.Quaternion()
+      resolved.quatx = 0.0
     }
 
-    if (msg.device_accel !== undefined) {
-      resolved.device_accel = geometry_msgs.msg.Accel.Resolve(msg.device_accel)
+    if (msg.quaty !== undefined) {
+      resolved.quaty = msg.quaty;
     }
     else {
-      resolved.device_accel = new geometry_msgs.msg.Accel()
+      resolved.quaty = 0.0
+    }
+
+    if (msg.quatz !== undefined) {
+      resolved.quatz = msg.quatz;
+    }
+    else {
+      resolved.quatz = 0.0
+    }
+
+    if (msg.quatw !== undefined) {
+      resolved.quatw = msg.quatw;
+    }
+    else {
+      resolved.quatw = 0.0
+    }
+
+    if (msg.accelx !== undefined) {
+      resolved.accelx = msg.accelx;
+    }
+    else {
+      resolved.accelx = 0.0
+    }
+
+    if (msg.accely !== undefined) {
+      resolved.accely = msg.accely;
+    }
+    else {
+      resolved.accely = 0.0
+    }
+
+    if (msg.accelz !== undefined) {
+      resolved.accelz = msg.accelz;
+    }
+    else {
+      resolved.accelz = 0.0
     }
 
     if (msg.device_switch !== undefined) {

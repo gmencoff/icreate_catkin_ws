@@ -15,8 +15,6 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <geometry_msgs/Quaternion.h>
-#include <geometry_msgs/Accel.h>
 
 namespace handheld_device
 {
@@ -27,30 +25,55 @@ struct handheld_device_data_
 
   handheld_device_data_()
     : device_distance(0)
-    , device_quat()
-    , device_accel()
+    , quatx(0.0)
+    , quaty(0.0)
+    , quatz(0.0)
+    , quatw(0.0)
+    , accelx(0.0)
+    , accely(0.0)
+    , accelz(0.0)
     , device_switch(0)  {
     }
   handheld_device_data_(const ContainerAllocator& _alloc)
     : device_distance(0)
-    , device_quat(_alloc)
-    , device_accel(_alloc)
+    , quatx(0.0)
+    , quaty(0.0)
+    , quatz(0.0)
+    , quatw(0.0)
+    , accelx(0.0)
+    , accely(0.0)
+    , accelz(0.0)
     , device_switch(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef int64_t _device_distance_type;
+   typedef int16_t _device_distance_type;
   _device_distance_type device_distance;
 
-   typedef  ::geometry_msgs::Quaternion_<ContainerAllocator>  _device_quat_type;
-  _device_quat_type device_quat;
+   typedef float _quatx_type;
+  _quatx_type quatx;
 
-   typedef  ::geometry_msgs::Accel_<ContainerAllocator>  _device_accel_type;
-  _device_accel_type device_accel;
+   typedef float _quaty_type;
+  _quaty_type quaty;
 
-   typedef int64_t _device_switch_type;
+   typedef float _quatz_type;
+  _quatz_type quatz;
+
+   typedef float _quatw_type;
+  _quatw_type quatw;
+
+   typedef float _accelx_type;
+  _accelx_type accelx;
+
+   typedef float _accely_type;
+  _accely_type accely;
+
+   typedef float _accelz_type;
+  _accelz_type accelz;
+
+   typedef int8_t _device_switch_type;
   _device_switch_type device_switch;
 
 
@@ -131,12 +154,12 @@ struct MD5Sum< ::handheld_device::handheld_device_data_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "894e9b259d1d4e8448e9e2d9ffed9851";
+    return "5f3fc4e797e13ce34dcd40452711b663";
   }
 
   static const char* value(const ::handheld_device::handheld_device_data_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x894e9b259d1d4e84ULL;
-  static const uint64_t static_value2 = 0x48e9e2d9ffed9851ULL;
+  static const uint64_t static_value1 = 0x5f3fc4e797e13ce3ULL;
+  static const uint64_t static_value2 = 0x4dcd40452711b663ULL;
 };
 
 template<class ContainerAllocator>
@@ -155,37 +178,15 @@ struct Definition< ::handheld_device::handheld_device_data_<ContainerAllocator> 
 {
   static const char* value()
   {
-    return "int64 device_distance\n\
-geometry_msgs/Quaternion device_quat\n\
-geometry_msgs/Accel device_accel\n\
-int64 device_switch\n\
-================================================================================\n\
-MSG: geometry_msgs/Quaternion\n\
-# This represents an orientation in free space in quaternion form.\n\
-\n\
-float64 x\n\
-float64 y\n\
-float64 z\n\
-float64 w\n\
-\n\
-================================================================================\n\
-MSG: geometry_msgs/Accel\n\
-# This expresses acceleration in free space broken into its linear and angular parts.\n\
-Vector3  linear\n\
-Vector3  angular\n\
-\n\
-================================================================================\n\
-MSG: geometry_msgs/Vector3\n\
-# This represents a vector in free space. \n\
-# It is only meant to represent a direction. Therefore, it does not\n\
-# make sense to apply a translation to it (e.g., when applying a \n\
-# generic rigid transformation to a Vector3, tf2 will only apply the\n\
-# rotation). If you want your data to be translatable too, use the\n\
-# geometry_msgs/Point message instead.\n\
-\n\
-float64 x\n\
-float64 y\n\
-float64 z\n\
+    return "int16 device_distance\n\
+float32 quatx\n\
+float32 quaty\n\
+float32 quatz\n\
+float32 quatw\n\
+float32 accelx\n\
+float32 accely\n\
+float32 accelz\n\
+int8 device_switch\n\
 ";
   }
 
@@ -205,8 +206,13 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.device_distance);
-      stream.next(m.device_quat);
-      stream.next(m.device_accel);
+      stream.next(m.quatx);
+      stream.next(m.quaty);
+      stream.next(m.quatz);
+      stream.next(m.quatw);
+      stream.next(m.accelx);
+      stream.next(m.accely);
+      stream.next(m.accelz);
       stream.next(m.device_switch);
     }
 
@@ -227,15 +233,23 @@ struct Printer< ::handheld_device::handheld_device_data_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::handheld_device::handheld_device_data_<ContainerAllocator>& v)
   {
     s << indent << "device_distance: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.device_distance);
-    s << indent << "device_quat: ";
-    s << std::endl;
-    Printer< ::geometry_msgs::Quaternion_<ContainerAllocator> >::stream(s, indent + "  ", v.device_quat);
-    s << indent << "device_accel: ";
-    s << std::endl;
-    Printer< ::geometry_msgs::Accel_<ContainerAllocator> >::stream(s, indent + "  ", v.device_accel);
+    Printer<int16_t>::stream(s, indent + "  ", v.device_distance);
+    s << indent << "quatx: ";
+    Printer<float>::stream(s, indent + "  ", v.quatx);
+    s << indent << "quaty: ";
+    Printer<float>::stream(s, indent + "  ", v.quaty);
+    s << indent << "quatz: ";
+    Printer<float>::stream(s, indent + "  ", v.quatz);
+    s << indent << "quatw: ";
+    Printer<float>::stream(s, indent + "  ", v.quatw);
+    s << indent << "accelx: ";
+    Printer<float>::stream(s, indent + "  ", v.accelx);
+    s << indent << "accely: ";
+    Printer<float>::stream(s, indent + "  ", v.accely);
+    s << indent << "accelz: ";
+    Printer<float>::stream(s, indent + "  ", v.accelz);
     s << indent << "device_switch: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.device_switch);
+    Printer<int8_t>::stream(s, indent + "  ", v.device_switch);
   }
 };
 
